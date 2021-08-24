@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  docker-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=codejavadb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3306:3306
+
+  myapp-main:
+    image: docker-images
+    restart: on-failure
+    depends_on:
+      - docker-mysql
+    ports:
+      - 8089:8089
+    environment:
+      - DATABASE_HOST=docker-mysql
+      - DATABASE_USER=user
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=codejavadb
+      - DATABASE_PORT=3306
