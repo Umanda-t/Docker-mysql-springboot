@@ -11,7 +11,7 @@ import java.util.List;
 
 @Controller
 public class AppController {
-    
+
     @Autowired
     private UserRepository userRepo;
     @Autowired
